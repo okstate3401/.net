@@ -15,7 +15,17 @@ public partial class artistDetails : MultitracksPage
 
         try
         {
-            sql.Parameters.Add("@artistId", 5);
+            // get artist id from url parameters
+            string urlParamArtistId = Request["artistId"] + "";
+
+            int artistId;
+            int.TryParse(urlParamArtistId, out artistId);
+
+            // default if no url param is given
+            if(artistId == 0)
+                artistId = 1;
+
+            sql.Parameters.Add("@artistId", artistId);
             var data = sql.ExecuteStoredProcedureDT("GetArtistDetails");
 
             songs.DataSource = data;
@@ -37,7 +47,7 @@ public partial class artistDetails : MultitracksPage
         }
         catch
         {
-
+            // artist not found
         }
     }
 }
