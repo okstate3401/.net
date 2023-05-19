@@ -16,7 +16,7 @@ public partial class artistDetails : MultitracksPage
         try
         {
             // get artist id from url parameters
-            string urlParamArtistId = Request["artistId"] + "";
+            string urlParamArtistId = Request["artistID"] + "";
 
             int artistId;
             int.TryParse(urlParamArtistId, out artistId);
